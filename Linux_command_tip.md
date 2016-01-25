@@ -9,6 +9,6 @@
 ##### 指令
 先找出符合條件的檔案，再利用 xrags 傳遞檔案名稱做為 rm 的參數。注意 atime、ctime 與 mtime 的差別，以及 +、－ 或不加的意義。
 ```bash
-[root@Server]# find /YOUR/DIR/PATH -mtime +30|xargs rm -f
+[root@Server]# find /YOUR/DIR/PATH -mtime +30|xargs -n 100 rm -f
 ```
 
