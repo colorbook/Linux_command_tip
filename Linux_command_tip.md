@@ -11,4 +11,11 @@
 ```bash
 [root@Server]# find /YOUR/DIR/PATH -mtime +30|xargs -n 100 rm -f
 ```
-
+## Tip2	複製特定時間區間檔案
+##### 需求
+複製近一個月檔案到特定資料夾中
+##### 指令
+先找出符合條件的檔案，再利用 xrags 傳遞檔案名稱做為 cp 的參數。注意 xargs 參數 -i 代表將 find 指令的 output 指定到 cp 的指定 input 位置。
+```bash
+[root@Server]# find /YOUR/DIR/PATH -mtime +30|xargs -i cp {} /YOUR/DEST/DIR/PATH
+```
