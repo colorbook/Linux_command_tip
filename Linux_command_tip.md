@@ -23,3 +23,11 @@
 ```bash
 [root@Server]# find /YOUR/DIR/PATH -newer new_time_file ! -newer old_time_file|xargs -i cp {} /YOUR/DEST/DIR/PATH
 ```
+## Tip3	將timestamp轉換成日期時間
+##### 需求
+將timestamp轉換成日期時間
+##### 指令
+利用 date -d 參數轉換 timestamp，記得 timestamp 前要加 @ 符號。
+```bash
+[root@Server]# date -d @timestamp
+```
