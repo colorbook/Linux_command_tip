@@ -33,10 +33,12 @@
 ```
 
 ## Tip4	利用多核處理器將CSV檔壓縮成gzip檔案
+##### 參考資料
+[GNU Parallel](http://www.gnu.org/software/parallel/)
 ##### 需求
 因 CSV 檔眾多，單純下 gzip 指令壓縮較為耗時，利用 parallel 工具利用多核處理器資源進行壓縮處理。
 ##### 指令
-先遞迴取得 CSV 檔案名稱，再利用 parallel 參數 --pipe 代表將檔案分段拆開給不同 CPU 處理；參數 --recend 表將大檔案切割做後續處理，後面可接切割的標註文字，在這不指定切割點，系統預設以'\n'做為切割點；參數 -k 表檔案重組順序要依照 input 順序，簡言之 output 順序要與 input 順序相同；參數 gzip 是以 gzip 方式壓縮檔案。
+先遞迴取得 CSV 檔案名稱，再利用 parallel 參數 --pipe 代表將檔案分段拆開給不同 CPU 處理；參數 --recend 表將大檔案切割做後續處理，後面可接切割的標註文字，在這不指定切割點，系統預設以 '\n' 做為切割點；參數 -k 表檔案重組順序要依照 input 順序，簡言之 output 順序要與 input 順序相同；參數 gzip 是以 gzip 方式壓縮檔案。
 ```bash
 [root@Server]# cat gzip_parallel.sh
 ...
