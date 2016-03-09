@@ -19,15 +19,29 @@
 ```bash
 [root@Server]# find /YOUR/DIR/PATH -mtime +30|xargs -i cp {} /YOUR/DEST/DIR/PATH
 ```
-法二：利用find -newer與!-newer找出借於new_time_file時間(mtime)與old_time_file時間之間的檔案，再進行複製。
+法二：利用 find -newer 與 !-newer 找出借於 new_time_file 時間 (mtime) 與 old_time_file 時間之間的檔案，再進行複製。
 ```bash
 [root@Server]# find /YOUR/DIR/PATH -newer new_time_file ! -newer old_time_file|xargs -i cp {} /YOUR/DEST/DIR/PATH
 ```
-## Tip3	將timestamp轉換成日期時間
+## Tip3	將 timestamp 轉換成日期時間
 ##### 需求
-將timestamp轉換成日期時間
+將 timestamp 轉換成日期時間
 ##### 指令
 利用 date -d 參數轉換 timestamp，記得 timestamp 前要加 @ 符號。
 ```bash
 [root@Server]# date -d @timestamp
+```
+
+## Tip4	利用多核處理器將CSV檔壓縮成gzip檔案
+##### 需求
+因 CSV 檔眾多，單純下 gzip 指令壓縮較為耗時，利用 parallel 工具利用多核處理器資源進行壓縮處理。
+##### 指令
+先遞迴取得 CSV 檔案名稱，再利用 parallel 參數 --pipe 代表將檔案分段拆開給不同 CPU 處理；參數 --recend 表將大檔案切割做後續處理，後面可接切割的標註文字，在這不指定切割點，系統預設以'\n'做為切割點；參數 -k 表檔案重組順序要依照 input 順序，簡言之 output 順序要與 input 順序相同；參數 gzip 是以 gzip 方式壓縮檔案。
+```bash
+[root@Server]# cat gzip_parallel.sh
+...
+for i in $(ls /where/csv_dir/*.csv)
+do
+cat $i|parallel --pipe --recend '' -k gzip > $i.gz
+done
 ```
