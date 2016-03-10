@@ -47,3 +47,14 @@ do
 cat $i|parallel --pipe --recend '' -k gzip > $i.gz
 done
 ```
+
+## Tip5	find 排除特定資料夾
+##### 需求
+/home/file{1,2,3}.txt
+/home/work/file{1,2,3}.txt
+目標只要搜索 /home 下第一階目錄的 file.txt 檔案，排除 /home/work 目錄下的 file.txt
+##### 指令
+利用 find 指令搜索 /home，參數 -path 指定 /home/work 目錄並用參數 -prune 判斷為資料夾並不進入目錄搜索；參數 -name 搜索 file.txt 類似的檔名並利用參數 -print 印出檔案全名。
+```bash
+[root@Server]# find /home -path '/home/work' -prune -o -name file*.txt -print 
+```
