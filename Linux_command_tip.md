@@ -58,3 +58,12 @@ done
 ```bash
 [root@Server]# find /home -path '/home/work' -prune -o -name file*.txt -print 
 ```
+
+## Tip6	利用nohup背景執行指令
+##### 需求
+透過SSH連線Linux系統執行指令時，當關閉終端機或網路中斷時，系統會收到HUP（hangup）信號而中斷指令運行。
+##### 指令
+利用nohup執行指令，讓指令執行過程中忽略HUP信號。(預設系統output會指定至$HOME/nohup.out)
+```bash
+[root@Server]# nohup YOURCOMMAND
+```
