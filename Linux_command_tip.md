@@ -67,3 +67,14 @@ done
 ```bash
 [root@Server]# nohup YOURCOMMAND
 ```
+
+## Tip7	find 查詢特定時間區間的檔案
+##### 參考資料
+[find(1)－newerXY](http://linux.die.net/man/1/find)
+##### 需求
+/home 目錄中每分鐘固定生成檔案，久而久之累積大量檔案資料，在管理上要查詢特定時間之檔案較無效率。
+##### 指令
+利用 find 指令搜索 /home 目錄下，檔案 mtime 界於 5/5~10 的檔案資料。
+```bash
+[root@Server]# find /home -type f ! -newermt "2016-05-10" -newermt "2016-05-05"
+```
