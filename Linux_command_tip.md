@@ -78,3 +78,14 @@ done
 ```bash
 [root@Server]# find /home -type f ! -newermt "2016-05-10" -newermt "2016-05-05"
 ```
+
+## Tip8	date 查詢150天前的時間
+##### 參考資料
+[date(1) - Linux man page](http://linux.die.net/man/1/date)
+##### 需求
+查詢150天前的時間
+##### 指令
+利用 date 的 --date 參數指定 150 天前，並指定輸出的時間格式。
+```bash
+[root@Server]# date +%Y%m%d --date="-150 day"
+```
