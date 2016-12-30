@@ -89,3 +89,14 @@ done
 ```bash
 [root@Server]# date +%Y%m%d --date="-150 day"
 ```
+
+## Tip9	查詢伺服器serial number
+##### 參考資料
+[dmidecode](http://www.nongnu.org/dmidecode/)
+##### 需求
+查詢硬體資料(serial number)
+##### 指令
+利用 date 的 -t 參數指定查詢system資訊。
+```bash
+[root@Server]# dmidecode -t system
+```
