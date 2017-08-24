@@ -100,3 +100,12 @@ done
 ```bash
 [root@Server]# dmidecode -t system
 ```
+
+## Tip10 在shell中輸入tab
+##### 需求
+使用cut指令在分隔符號中輸入\t無效
+##### 指令
+先輸入Ctrl+V再輸入tab
+```bash
+[root@Server]# cut -d ' ' -f1,2,3 test.txt
+```
