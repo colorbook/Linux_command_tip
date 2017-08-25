@@ -136,7 +136,7 @@ uniq參數為u代表僅出現一次的行；參數為d代表僅出現重複的�
 # 聯集
 [root@Server]# sort orig.txt copy.txt|uniq
 ```
-上述檔案內容為orig.txt包含copy.txt內容，但是當orig1.txt各自有不同內容copy2.txt，如何找出orig1.txt - copy2.txt的差集？
+上述檔案內容為orig.txt包含copy.txt內容，但是當orig1.txt各自有不同內容copy1.txt，如何找出orig1.txt - copy1.txt的差集？
 ```bash
 [root@Server]# cat orig1.txt
 1.csv
