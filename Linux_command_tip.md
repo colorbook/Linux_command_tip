@@ -109,3 +109,30 @@ done
 ```bash
 [root@Server]# cut -d ' ' -f1,2,3 test.txt
 ```
+
+## Tip11 比較兩文件的交集、差集及聯集
+##### 需求
+複製大量檔案過程，希望先刪除已複製過的檔案。
+```bash
+[root@Server]# cat orig.txt
+1.csv
+2.csv
+3.csv
+4.csv
+5.csv
+[root@Server]# cat copy.txt
+1.csv
+2.csv
+3.csv
+```
+上述可知原本檔案有5個，目前已經複製3個檔案
+##### 指令
+uniq參數為u代表僅出現一次的行；參數為d代表僅出現重複的行。
+```bash
+# 交集
+[root@Server]# sort orig.txt copy.txt|uniq -u
+# 差集(orig.txt-copy.txt)
+[root@Server]# sort orig.txt copy.txt|uniq -d
+# 聯集
+[root@Server]# sort orig.txt copy.txt|uniq
+```
