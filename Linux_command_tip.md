@@ -130,9 +130,26 @@ done
 uniq參數為u代表僅出現一次的行；參數為d代表僅出現重複的行。
 ```bash
 # 交集
-[root@Server]# sort orig.txt copy.txt|uniq -u
-# 差集(orig.txt-copy.txt)
 [root@Server]# sort orig.txt copy.txt|uniq -d
+# 差集(orig.txt-copy.txt)
+[root@Server]# sort orig.txt copy.txt|uniq -u
 # 聯集
 [root@Server]# sort orig.txt copy.txt|uniq
 ```
+上述檔案內容為orig.txt包含copy.txt內容，但是當orig1.txt各自有不同內容copy2.txt，如何找出orig1.txt - copy2.txt的差集？
+```bash
+[root@Server]# cat orig1.txt
+1.csv
+2.csv
+3.csv
+4.csv
+5.csv
+[root@Server]# cat copy1.txt
+a.csv
+b.csv
+3.csv
+[root@Server]# sort orig1.txt copy1.txt copy1.txt|uniq -u
+1.csv
+2.csv
+```
+
