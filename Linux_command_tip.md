@@ -153,3 +153,19 @@ b.csv
 2.csv
 ```
 
+## Tip12 間接計算CSV欄位個數
+##### 需求
+計算CSV檔案中的欄位個數
+CSV檔案內容如下：
+A,B,C,D,E
+F,G,H,I,J
+K,L,M,N,O
+##### 指令
+1. 利用head指令印出1行內容
+2. 利用tr指令接dc參數代表只萃取逗號
+3. 利用wc指令接c參數計算有多少字元
+利用這方法計算每行有4個逗號，可以推測出有5個欄位。
+```bash
+[root@Server]# head -n1 example.csv|tr -dc ','|wc -c
+4
+```
