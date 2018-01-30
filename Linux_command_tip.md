@@ -184,3 +184,25 @@ K,L,M,N,O
 3. 按大寫W將目前設定寫入設定檔
 
 未來使用top指令預設會顯示各CPU使用狀況
+
+## Tip14 透過rsync傳送近期生成檔案後並刪除
+##### 需求
+1. SFTP伺服器固定收容分析報告
+2. SFTP伺服器硬碟空間不足，僅能存取一週分析報告。
+3. 希望固定時間傳送報告後並刪除報告
+
+##### 指令
+1. 利用avRt參數保持所有文件屬性與時間
+2. 利用find指令讀取特定目錄資料，並且存取時間為一天內的檔案，後續將檔案清單以rsync --files-from參數讀取。
+3. 利用--remove-source-files參數設定檔案傳輸後刪除
+4. 利用--append參數設定當目的端有同名但較小的檔案時，附加檔案內容。
+5. /home/read_dir為rsync讀取的目錄
+6. root@[Remote IP]:/home/receive_dir為傳送到遠端IP位址與指定目錄位置
+
+```bash
+[root@Server]# rsync -avRt --files-from=<(find [0-9]*-[0-9]*-[0-9]* -type f -atime -1) --remove-source-files --append /home/read_dir root@[Remote IP]:/home/receive_dir
+```
+
+如要固定時間執行rsync傳輸檔案，需設定以下步驟。
+1. 複製SSH public key至遠端IP位址(hint: ssh-copy-id)
+2. 將指令寫入crontab中
